@@ -12,7 +12,7 @@ class Solution {
         for(int i = 0;i<nums.length;i++) {
             for(int j = i + 1;j<nums.length;j++){
                 int complement = target - nums[i];
-                                                              //brute force
+                                                              //brute force   O(n^2)
                 if(complement == nums[j]){
                     return new int[] { i, j};
                 }
@@ -23,3 +23,19 @@ class Solution {
 }
 
 
+                                   /*------------------------------------------------------------------------------*/
+
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i = 0;i<nums.length;i++) {
+            int complement = target - nums[i];
+            if(map.containsKey(complement)) {                                 //Using HashMap    O(n)
+                return new int[] {map.get(complement), i};
+            }
+            map.put(nums[i],i);
+        }
+        throw new IllegalArgumentException("no match found");
+    }
+}
